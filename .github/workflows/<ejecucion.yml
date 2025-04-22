@@ -3,7 +3,7 @@ name: "Compilacion del documento .tex de la carpeta search"
 on:
   push:
   branches:
-  -main 
+  - main 
 
 jobs:
   release_cv:
