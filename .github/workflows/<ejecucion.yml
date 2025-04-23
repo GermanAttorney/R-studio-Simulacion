@@ -3,7 +3,10 @@ name: "Compilacion del documento .tex de la carpeta search"
 on:
   push:
   branches:
-  - main 
+  - main # Detecta cambios en el repositorio principal
+
+permissions:
+  contents: write #Esto de permiso de escritura
 
 jobs:
   release_cv:
@@ -26,7 +29,7 @@ jobs:
   name: "Carga del PDF a una URL fija"
   uses: marvinpinto/action-automatic-releases@latest
   with: 
-    repo_token: "{{secrets.PERSONAL_ACCESS_TOKEN}}"
+    repo_token: {{secrets.PERSONAL_ACCESS_TOKEN}}
     automatic_release_tag: "latest"
     prerelease: true
     title: "Carga"
