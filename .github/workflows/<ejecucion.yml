@@ -1,4 +1,4 @@
-name: "Compilacion del documento .tex de la carpeta search"
+name: "Compilación del documento .tex de la carpeta Informes"
 
 on: 
   push: 
@@ -10,28 +10,28 @@ permissions:
 
 jobs:
   release_cv:
-  name: "Ejecucion Informe LaTex"
-  runs-on: ubuntu-latest
+    name: "Ejecución Informe LaTeX"
+    runs-on: ubuntu-latest
 
-  steps:
-  name: "Checkout master"
-  uses: actions/checkout@v1
+    steps:
+      - name: "Checkout del repositorio"
+        uses: actions/checkout@v1
 
-  name: "Compilacion del informe"
-  uses: xu-cheng/latex-action@master
-  with:
-  root_file: Scripts/Informe01.tex 
+      - name: "Compilación del Informe"
+        uses: xu-cheng/latex-action@master
+        with: 
+          root_file: Informes/Informe01.tex
 
-  name: "Revvision del PDF"
-  run: |
-  file Informe01.pdf | grep -q 'PDF'
+      - name: "Revisión del PDF"
+        run: |
+          file Informe01.pdf | grep -q 'PDF'
 
-  name: "Carga del PDF a una URL fija"
-  uses: marvinpinto/action-automatic-releases@latest
-  with: 
-    repo_token: {{secrets.PERSONAL_ACCESS_TOKEN}}
-    automatic_release_tag: "latest"
-    prerelease: true
-    title: "Carga"
-    files: |
-    Informe01.pdf
+      - name: "Carga del PDF como release"
+        uses: marvinpinto/action-automatic-releases@latest
+        with: 
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          automatic_release_tag: "latest"
+          prerelease: true
+          title: "Carga"
+          files: |
+            Informe01.pdf
