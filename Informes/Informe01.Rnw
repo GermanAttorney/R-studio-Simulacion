@@ -1,0 +1,42 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath,amssymb,amsfonts,latexsym}
+
+\usepackage[a4paper,right = 2.54cm, left = 2.54cm, top = 2.54cm, bottom = 2.54cm]{geometry}
+
+\begin{document}
+
+\hrulefill
+
+\begin{center}
+\textbf{ESCUELA POLITÉCNICA NACIONAL}
+
+TEORIA DE LA MEDIDA E INTEGRACION
+\end{center}
+\begin{center}
+    Ejercicio de Clase
+\end{center}
+
+18 de julio de 2024 \hfill \textbf{Estudiante:} Gonzalez German
+
+\hrulefill
+
+1. Si $(\mu)_{n \in \mathbb{N}}$ una sucesion de medidas en $X$ tales que $\mu_n(X)=1$ y si definimos $\lambda$ como $$\lambda(E)=\sum_{n=1}^{+\infty} 2^{-n} \mu_{n}(E) , E \in X$$
+entonces $\lambda$ es una medida para $X$ y $\lambda(X)=1$.
+
+\textit{Demostracion.} 
+\begin{enumerate}
+    \item Veamos que $\mu_n(\emptyset)=0$ para todo $n \in \mathbb{N}$, entonces $\lambda(\emptyset)=\sum_{n=1}^{+\infty} 2^{-n} \mu_{n}(\emptyset)=0$.
+    \item Como $\mu_n(E) \geq 0$ para todo $n \in \mathbb{N}$ y $E \in X$ por todas ser medidas, entonces $2^{-n} \mu_n(E) \geq 0$
+    \item Si $(E_n)_{n \in \mathbb{N}}$ sucesion de elementos en X disjuntos. Entonces $\mu_k (\cup_{n \in \mathbb{N}} E_n) = \sum_{n=1}^{+\infty} \mu_k (E_n)$ para todo $k\in \mathbb{N}$.
+    Veamos que $$\lambda(\cup_{n \in \mathbb{N}} E_n)= \sum_{k=1}^{+\infty} 2^{-k} \mu_k (\cup_{n \in \mathbb{N}} E_n)=\sum_{k=1}^{+\infty} \sum_{n=1}^{+\infty} 2^{-k} \mu_k (E_n)=\sum_{n=1}^{+\infty} \sum_{k=1}^{+\infty}  2^{-k} \mu_k (E_n)= \sum_{n=1}^{+\infty} \lambda(E_n)$$
+    
+\end{enumerate}
+
+Por tanto, $\lambda$ es una medida de $X$. Ahora veamos que $\lambda(X)=1$.
+
+Pues $\mu_n(X)=1$ para $n\in \mathbb{N}$, entonces $$\lambda(X)=\sum_{n=1}^{+\infty} 2^{-n} \mu_n(X)= \sum_{n=1}^{+\infty} 2^{-n} =1$$ 
+
+\end{document}
