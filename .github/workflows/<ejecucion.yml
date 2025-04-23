@@ -15,7 +15,7 @@ jobs:
 
     steps:
       - name: "Checkout del repositorio"
-        uses: actions/checkout@v1
+        uses: actions/checkout@latest
 
       - name: "Compilación del Informe"
         uses: xu-cheng/latex-action@master
