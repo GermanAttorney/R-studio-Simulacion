@@ -3,7 +3,7 @@ name: "Compilacion del documento .tex de la carpeta search"
 on:
   push:
     branches:
-    - main # Detecta cambios en el repositorio principal
+      - main # Detecta cambios en el repositorio principal
 
 permissions:
   contents: write #Esto de permiso de escritura
