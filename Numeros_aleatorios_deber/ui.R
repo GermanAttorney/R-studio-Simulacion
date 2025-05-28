@@ -11,43 +11,43 @@ library(shiny)
 library(kableExtra)
 # Define UI for application that draws a histogram
 fluidPage(
-  tags$style("h1 {color:#000000 ; font-size:35px}"),
+  tags$style("h1 {color:#000000 ; font-size:40px}"),
   tags$style("h2 {color:#A569BD ; font-size:20px}"),
   fluidRow(column(width=3, tags$img(src="EPN.png",width="150px",height="180px")),
-           column(width=9, h1("Aplicativo: Integrales con numeros aleatorios"))
+           column(width=9, h1("Aplicativo: Integrales con números aleatorios"))
            ),
   actionButton("calcular","Calcular", style="color:#000000 ; background-color: #f0ac7e"),
   
     tabsetPanel(
       tabPanel("Configuraciones graficos",
                sidebarPanel(
-                 selectInput("color", "Seleccione el color para la linea de aproximacion:", 
+                 selectInput("color", "Seleccione el color para la linea de aproximación:", 
                              choices= c("rojo claro"="#c0392b","azul claro"="#a9cce3","verde claro"="#7dcea0","naranja"="#f0b27a","morado"="#c39bd3","negro"="#17202a"
                                         ,"gris"="#b2babb","violeta"="#76448a","lila"="#d2b4de","turquesa"="#58d68d")),
-               selectInput("color2", "Seleccione el color para la linea de valor teorico:", 
+               selectInput("color2", "Seleccione el color para la linea de valor teórico:", 
                            choices= c("rojo claro"="#c0392b","azul claro"="#a9cce3","verde claro"="#7dcea0","naranja"="#f0b27a","morado"="#c39bd3","negro"="#17202a"
                                       ,"gris"="#b2babb","violeta"="#76448a","lila"="#d2b4de","turquesa"="#58d68d"),
                            selected="#17202a"),
-               selectInput("color_area", "Seleccione el color para el area:", 
+               selectInput("color_area", "Seleccione el color para el área:", 
                            choices= c("rojo claro"="#c0392b","azul claro"="#a9cce3","verde claro"="#7dcea0","naranja"="#f0b27a","morado"="#c39bd3","negro"="#17202a"
                                       ,"gris"="#b2babb","violeta"="#76448a","lila"="#d2b4de","turquesa"="#58d68d"),
                            selected="#a9cce3"),
-               selectInput("color_limites", "Seleccione el color para limites de area:", 
+               selectInput("color_limites", "Seleccione el color para limites de área:", 
                            choices= c("rojo claro"="#c0392b","azul claro"="#a9cce3","verde claro"="#7dcea0","naranja"="#f0b27a","morado"="#c39bd3","negro"="#17202a"
                                       ,"gris"="#b2babb","violeta"="#76448a","lila"="#d2b4de","turquesa"="#58d68d"),
                            selected="#f0b27a"
                            ),
-               selectInput("color_func", "Seleccione el color para la funcion:", 
+               selectInput("color_func", "Seleccione el color para la función:", 
                            choices= c("rojo claro"="#c0392b","azul claro"="#a9cce3","verde claro"="#7dcea0","naranja"="#f0b27a","morado"="#c39bd3","negro"="#17202a"
                                       ,"gris"="#b2babb","violeta"="#76448a","lila"="#d2b4de","turquesa"="#58d68d"),
                            selected="#17202a"
                              )
                )
       ),
-      tabPanel("Ajustes de funcion e integral",
+      tabPanel("Ajustes de función e integral",
                sidebarPanel(
                  numericInput("k",
-                              "Aproximacion:",
+                              "Aproximación:",
                               min = 1,
                               max = 1000000,
                               value = 1000),
@@ -65,11 +65,11 @@ fluidPage(
                  
                )
       ),
-      tabPanel("Ajustes numeros aleatorios:",
+      tabPanel("Ajustes números aleatorios:",
                
         sidebarPanel(
         numericInput("n",
-                       "Cantidad de numeros aleatorios:",
+                       "Cantidad de números aleatorios:",
                        min = 1,
                        max = 1000000,
                        value = 1000),
@@ -102,16 +102,28 @@ fluidPage(
         selectInput("Modelo",
                     "Modelo congruencial",
                     choices = c("Simple"=1,"Mixto"=2),
-                    selected = "Simple")
+                    selected = "Simple"),
+        selectInput("color_barhist", "Seleccione el color para el borde del histograma:", 
+                    choices= c("rojo claro"="#c0392b","azul claro"="#a9cce3","verde claro"="#7dcea0","naranja"="#f0b27a","morado"="#c39bd3","negro"="#17202a"
+                               ,"gris"="#b2babb","violeta"="#76448a","lila"="#d2b4de","turquesa"="#58d68d"),
+                    selected="#17202a"
+        ),
+        selectInput("color_areahist", "Seleccione el color para el relleno del histograma:", 
+                    choices= c("rojo claro"="#c0392b","azul claro"="#a9cce3","verde claro"="#7dcea0","naranja"="#f0b27a","morado"="#c39bd3","negro"="#17202a"
+                               ,"gris"="#b2babb","violeta"="#76448a","lila"="#d2b4de","turquesa"="#58d68d"),
+                    selected="#a9cce3"
+        )
         )
       )
       ),
       mainPanel("Informe de resultados",
                 tabsetPanel(
-                  tabPanel("Generacion numeros aleatorios:",
-                           "Generacion de numeros aleatorios: ",
+                  tabPanel("Generación números aleatorios:",
+                           "Generación de números aleatorios: ",
                            textOutput("metodo_text"),
-                           uiOutput("tabla_aleatorio")
+                           uiOutput("tabla_aleatorio"),
+                           "Histograma de los números aleatorios",
+                           plotOutput("histograma_numeros")
                            #Tabla de numeros aleatorios:
                            ),
                   tabPanel(textOutput("titul_fun"),
@@ -119,7 +131,7 @@ fluidPage(
                            textOutput("Valor_teorico"),
                            textOutput("resultado_integral"),
                            textOutput("resultado_error"),
-                           "Grafico de la aproximacion de la integral de la funcion por numero de iteraciones:",
+                           "Grafico de la aproximación de la integral de la función por número de iteraciones:",
                            plotOutput("grafico_convergencia")                               
                            )
                   

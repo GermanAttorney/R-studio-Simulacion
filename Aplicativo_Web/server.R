@@ -15,7 +15,6 @@ load("./data/Info.RData")
 datos[, fecha_corte:= ymd(fecha_corte)]
 datos[, fecha_nacimiento:= ymd(fecha_nacimiento)]
 
-# Define server logic required to draw a histogram
 function(input, output, session) {
   tvar <- datos |> map_chr(class)
   tvar <- data.table(Variable = names(tvar) , Tipo = unname(tvar))
@@ -30,13 +29,18 @@ function(input, output, session) {
   
   output$grafico <- renderPlot({
     if(input$tipo =="numeric"){
-      datos %>% dplyr::select(input$var) %>% pull(.) %>% hist(.)
-      
+      datos %>% dplyr::select(input$var) %>% pull(.) %>% hist(.,breaks = input$bins,
+                                                              col = input$color, 
+                                                              border = input$borde, 
+                                                              main = paste("Histograma de ", input$var))
     } else{
       
-      datos %>% dplyr::select(input$var) %>% table(.) %>% barplot(.)
+      datos %>% dplyr::select(input$var) %>% table(.) %>% barplot(., col = input$color, 
+                                                                  border = input$borde, 
+                                                                  main = paste("Histograma de ", input$var))
     }
-     
   })
-  
+  output$grafico_ui <- renderUI({
+    plotOutput("grafico", width = "100%", height = input$Size)
+  })
 }

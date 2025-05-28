@@ -121,7 +121,7 @@ function(input, output, session) {
     
     titul_fun<- paste("Integral ",input$func_text)
     
-    valor_teorico<- paste0("El resultado teorico es: ",integrate(f,lower= input$a,upper=input$b)$value)
+    valor_teorico<- paste0("El resultado teórico es: ",integrate(f,lower= input$a,upper=input$b)$value)
     
     if(input$Modelo==1){
       metodo_text<-paste0("Metodo congruencial simple: ","xi =",input$constante,"*x_(i-1) mod(",input$modulo,")" )
@@ -160,7 +160,7 @@ function(input, output, session) {
       geom_hline(yintercept = integrate(f,lower= input$a,upper=input$b)$value,linetype="dashed",color = input$color2) + ##Linea valor teorico: Aproximacion de R
       labs(title = paste0("Estimación de ∫",input$func_text,  "dx en [",input$a,",", input$b,"]"),
            x = "Iteraciones",
-           y = "Estimacion") +
+           y = "Estimación") +
       theme_minimal()
     
     return(list(
@@ -222,5 +222,16 @@ function(input, output, session) {
     )
   })
 
+  output$histograma_numeros <- renderPlot({
+    req(resultado())  # Asegura que haya un resultado disponible
+    numeros <- unlist(resultado()$vector)
+    hist(numeros,
+         breaks = 30,
+         col = input$color_areahist,
+         border = input$color_barhist,
+         main = "Histograma de los Números Aleatorios",
+         xlab = "Valores",
+         ylab = "Frecuencia")
+  })
   
   }

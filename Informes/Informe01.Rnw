@@ -2,6 +2,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[utf8]{inputenc}
 \usepackage[spanish]{babel}
+\usepackage{graphics}
 \usepackage{amsmath,amssymb,amsfonts,latexsym}
 
 \usepackage[a4paper,right = 2.54cm, left = 2.54cm, top = 2.54cm, bottom = 2.54cm]{geometry}
@@ -38,5 +39,21 @@ entonces $\lambda$ es una medida para $X$ y $\lambda(X)=1$.
 Por tanto, $\lambda$ es una medida de $X$. Ahora veamos que $\lambda(X)=1$.
 
 Pues $\mu_n(X)=1$ para $n\in \mathbb{N}$, entonces $$\lambda(X)=\sum_{n=1}^{+\infty} 2^{-n} \mu_n(X)= \sum_{n=1}^{+\infty} 2^{-n} =1$$ 
+
+<<Chunk01>>=
+x <- 3+3-2+6
+y <- rnorm(5,mean=12,sd=4)
+sum(y)
+
+
+@
+
+<<Chunk02, echo=FALSE>>=
+n<-c(1,2,3,4,5)
+plot(n,y)
+
+
+@
+
 
 \end{document}
